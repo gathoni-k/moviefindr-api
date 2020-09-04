@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "predev": "babel-node startScripts/startMsg.js",
-    "dev": "yarn run open:src",
+    "dev": "npm-run-all --parallel open:src test",
     "open:src": "nodemon --exec babel-node startScripts/server.js ",
-    "start": "node startScripts/server.js"
+    "test": "jest --watch",
+    "start": "babel-node startScripts/server.js"
   },
   "keywords": [],
   "author": "",
