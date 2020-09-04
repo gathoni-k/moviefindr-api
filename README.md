@@ -1,5 +1,5 @@
 # Express-Babel-starter
-A starter template for an Express API
+A starter template for an Express API using babel
 
 ## Project Setup
 
