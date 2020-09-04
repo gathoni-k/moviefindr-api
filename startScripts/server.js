@@ -3,9 +3,9 @@
 /**
  * Module dependencies.
  */
-const app = require('../src/app')
-const debugLib = require('debug')
-const http = require('http')
+import app from '../src/app'
+import debugLib from 'debug'
+import http from 'http'
 const debug = debugLib('nodeauth:server')
 /**
  * Get port from environment and store in Express.
