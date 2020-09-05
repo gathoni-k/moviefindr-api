@@ -1,11 +1,18 @@
-# Express-Babel-starter
-A starter template for an Express API using babel
+# moviefindr API
+
+An Express API that fetches data from The Movie DataBase(TMDB)
+
+# Stack Used
+* NodeJs
+* Express
+* Jest
+* MongoDB
 
 ## Project Setup
 
 Clone Project
 
-```git clone https://github.com/gathoni-k/Express-Babel-starter```
+```git clone https://github.com/gathoni-k/moviefindr-api```
 
 Install dependencies
 
