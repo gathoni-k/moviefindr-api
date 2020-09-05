@@ -2,7 +2,13 @@ import { fetchMovieSearch } from '../helpers/movieData'
 
 export const searchMovie = async (req, res) => {
   try {
-    const response = await fetchMovieSearch(req.query.query, req.query.page)
+    if (!req.query.query) {
+      return res.status(400).json({
+        results: null,
+        error: 'query term is required'
+      })
+    }
+    const response = await fetchMovieSearch(req.query.query, req.query.page || 1)
 
     if (!response) {
       return res.status(422).json({
