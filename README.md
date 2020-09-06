@@ -38,11 +38,13 @@ Test
 **Search**
 
 - Request
+
 ```bash
 GET /movies/search?query=string&page=number // page is optional
 ```
 
-- Response 
+- Response
+
 ```json
   {
     results: [
@@ -65,5 +67,44 @@ GET /movies/search?query=string&page=number // page is optional
             ],
     error: string or null
 
+  }
+```
+
+**Trending Movies**
+
+- Request
+
+```bash
+GET /movies/trending/:time // time must be either 'day' or 'week'
+```
+
+- Response
+
+```json
+  {
+   results: {
+      page: number,
+      results: [
+              {
+                "popularity": number,
+                "vote_count": integer,
+                "video": boolean,
+                "poster_path": string or null,
+                "id": number,
+                "adult": boolean,
+                "backdrop_path": null,
+                "original_language": string,
+                "original_title": string,
+                "genre_ids": array[integer],
+                "title": string,
+                "vote_average": number,
+                "overview": string,
+                "release_date": string
+              }
+            ],
+      total_pages: number,
+      total_results: number
+   },
+    error: string or null
   }
 ```
