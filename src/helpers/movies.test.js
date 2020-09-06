@@ -1,10 +1,12 @@
 import axios from 'axios'
 import '../../startScripts/setupTests'
-import { fetchMovieSearch, fetchMovieDetails, fetchPopularMovies } from './movieData'
+import { fetchMovieSearch, fetchMovieDetails, fetchPopularMovies, fetchTopRatedMovies } from './movieData'
 import { movieSearchMockData } from './moviesMockData/movies.search.mockData'
 import { TrendingMoviesMockData } from './moviesMockData/movies.trending.mockData'
 import { movieDetails } from './moviesMockData/movie.details'
 import { popularMovies } from './moviesMockData/movies.popular'
+import { topMovies } from './moviesMockData/movies.top'
+
 jest.mock('axios')
 
 describe('fetch movie search data', () => {
@@ -99,6 +101,22 @@ describe('fetch popular movies', () => {
       axios.get.mockResolvedValue(popularMovies)
       const response = await fetchPopularMovies(1)
       expect(response).toEqual(popularMovies.data)
+      done()
+    } catch (error) {
+      done(error)
+    }
+  })
+})
+
+describe('fetch top rated movies', () => {
+  afterEach(() => {
+    jest.resetAllMocks()
+  })
+  it('should fetch popular movies', async (done) => {
+    try {
+      axios.get.mockResolvedValue(topMovies)
+      const response = await fetchTopRatedMovies(1)
+      expect(response).toEqual(topMovies.data)
       done()
     } catch (error) {
       done(error)
