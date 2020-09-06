@@ -11,4 +11,5 @@ router.get('/trending/:time', trendingMovies)
 
 router.get('/:movieId', movieDetails)
 
+router.get('/top-rated')
 export default router
