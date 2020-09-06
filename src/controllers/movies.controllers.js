@@ -44,7 +44,7 @@ export const trendingMovies = async (req, res) => {
       })
     }
     res.status(200).json({
-      results: response.results,
+      results: response,
       error: null
     })
   } catch (error) {
