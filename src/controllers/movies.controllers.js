@@ -1,4 +1,4 @@
-import { fetchMovieSearch, fetchTrending } from '../helpers/movieData'
+import { fetchMovieSearch, fetchTrending, fetchMovieDetails } from '../helpers/movieData'
 
 export const searchMovie = async (req, res) => {
   try {
@@ -37,6 +37,33 @@ export const trendingMovies = async (req, res) => {
       })
     }
     const response = await fetchTrending(req.params.time)
+    if (!response) {
+      return res.status(422).json({
+        results: null,
+        error: 'Error fetching data'
+      })
+    }
+    res.status(200).json({
+      results: response,
+      error: null
+    })
+  } catch (error) {
+    res.status(500).json({
+      results: null,
+      error: error.message
+    })
+  }
+}
+
+export const movieDetails = async (req, res) => {
+  try {
+    // if (typeof req.params.movieId !== 'number') {
+    //   return res.status(400).json({
+    //     results: null,
+    //     error: 'Movie id has to be of type number'
+    //   })
+    // }
+    const response = await fetchMovieDetails(Number(req.params.movieId))
     if (!response) {
       return res.status(422).json({
         results: null,
