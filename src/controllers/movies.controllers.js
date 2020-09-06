@@ -1,4 +1,4 @@
-import { fetchMovieSearch, fetchTrending, fetchMovieDetails } from '../helpers/movieData'
+import { fetchMovieSearch, fetchTrending, fetchMovieDetails, fetchPopularMovies } from '../helpers/movieData'
 
 export const searchMovie = async (req, res) => {
   try {
@@ -69,6 +69,28 @@ export const movieDetails = async (req, res) => {
       error: null
     })
   } catch (error) {
+    res.status(500).json({
+      results: null,
+      error: error.message
+    })
+  }
+}
+
+export const popularMovies = async (req, res) => {
+  try {
+    const response = await fetchPopularMovies(req.query.page)
+    if (!response) {
+      return res.status(422).json({
+        results: null,
+        error: 'Error fetching data'
+      })
+    }
+    return res.status(200).json({
+      results: response,
+      error: null
+    })
+  } catch (error) {
+    console.log(error)
     res.status(500).json({
       results: null,
       error: error.message
