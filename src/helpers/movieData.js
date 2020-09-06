@@ -17,3 +17,9 @@ export const fetchMovieSearch = async (query, page) => {
   const response = await axios.get(url)
   return response.data
 }
+
+export const fetchTrending = async (time) => {
+  const url = `https://api.themoviedb.org/3/trending/movie/${time}?api_key=${TMDB_API_KEY}`
+  const response = await axios.get(url)
+  return response.data
+}
