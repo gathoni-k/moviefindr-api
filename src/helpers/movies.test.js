@@ -1,8 +1,8 @@
 import axios from 'axios'
 import '../../startScripts/setupTests'
 import { fetchMovieSearch, fetchMovieDetails } from './movieData'
-import { movieSearchMockData } from './movies.search.mockData'
-import { TrendingMoviesMockData } from './movies.trending.mockData'
+import { movieSearchMockData } from './moviesMockData/movies.search.mockData'
+import { TrendingMoviesMockData } from './moviesMockData/movies.trending.mockData'
 import { movieDetails } from './moviesMockData/movie.details'
 jest.mock('axios')
 
