@@ -57,12 +57,6 @@ export const trendingMovies = async (req, res) => {
 
 export const movieDetails = async (req, res) => {
   try {
-    // if (typeof req.params.movieId !== 'number') {
-    //   return res.status(400).json({
-    //     results: null,
-    //     error: 'Movie id has to be of type number'
-    //   })
-    // }
     const response = await fetchMovieDetails(Number(req.params.movieId))
     if (!response) {
       return res.status(422).json({
