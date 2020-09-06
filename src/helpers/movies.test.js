@@ -1,8 +1,9 @@
 import axios from 'axios'
 import '../../startScripts/setupTests'
-import { fetchMovieSearch } from './movieData'
+import { fetchMovieSearch, fetchMovieDetails } from './movieData'
 import { movieSearchMockData } from './movies.search.mockData'
 import { TrendingMoviesMockData } from './movies.trending.mockData'
+import { movieDetails } from './moviesMockData/movie.details'
 jest.mock('axios')
 
 describe('fetch movie search data', () => {
@@ -48,6 +49,39 @@ describe('fetch trending movies', () => {
       axios.get.mockResolvedValue(TrendingMoviesMockData)
       const response = await fetchMovieSearch('day')
       expect(response).toEqual(TrendingMoviesMockData.data)
+      done()
+    } catch (error) {
+      done(error)
+    }
+  })
+})
+
+describe('fetch movie details', () => {
+  afterEach(() => {
+    jest.resetAllMocks()
+  })
+  it('should fetch movie details', async (done) => {
+    try {
+      axios.get.mockResolvedValue(movieDetails)
+      const response = await fetchMovieDetails(337401)
+      expect(response).toEqual(movieDetails.data)
+      done()
+    } catch (error) {
+      done(error)
+    }
+  })
+  it('should fetch erroneous data', async (done) => {
+    const errorResponse = {
+      data: {
+        success: false,
+        status_code: 34,
+        status_message: 'The resource you requested could not be found.'
+      }
+    }
+    try {
+      axios.get.mockResolvedValue(errorResponse)
+      const response = await fetchMovieDetails(337401233)
+      expect(response).toEqual(errorResponse.data)
       done()
     } catch (error) {
       done(error)
