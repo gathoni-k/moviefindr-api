@@ -1,7 +1,9 @@
 import express from 'express'
-import { searchMovie, trendingMovies, movieDetails, popularMovies, topMovies } from '../controllers/movies.controllers'
+import { searchMovie, trendingMovies, movieDetails, popularMovies, topMovies, similarMovies } from '../controllers/movies.controllers'
 
 const router = express.Router()
+
+router.get('/:movieId/similar', similarMovies)
 
 router.get('/top-rated', topMovies)
 
