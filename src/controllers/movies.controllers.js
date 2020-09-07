@@ -1,5 +1,10 @@
-import { fetchMovieSearch, fetchTrending, fetchMovieDetails, fetchPopularMovies, fetchTopRatedMovies } from '../helpers/movieData'
-import { async } from 'regenerator-runtime'
+import {
+  fetchMovieSearch,
+  fetchTrending,
+  fetchMovieDetails,
+  fetchPopularMovies,
+  fetchTopRatedMovies
+} from '../helpers/movieData'
 
 export const searchMovie = async (req, res) => {
   try {
@@ -9,7 +14,10 @@ export const searchMovie = async (req, res) => {
         error: 'query term is required'
       })
     }
-    const response = await fetchMovieSearch(req.query.query, req.query.page || 1)
+    const response = await fetchMovieSearch(
+      req.query.query,
+      req.query.page || 1
+    )
 
     if (!response) {
       return res.status(422).json({
@@ -91,7 +99,6 @@ export const popularMovies = async (req, res) => {
       error: null
     })
   } catch (error) {
-    console.log(error)
     res.status(500).json({
       results: null,
       error: error.message
@@ -113,7 +120,6 @@ export const topMovies = async (req, res) => {
       error: null
     })
   } catch (error) {
-    console.log(error)
     res.status(500).json({
       results: null,
       error: error.message
