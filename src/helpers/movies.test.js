@@ -1,11 +1,12 @@
 import axios from 'axios'
 import '../../startScripts/setupTests'
-import { fetchMovieSearch, fetchMovieDetails, fetchPopularMovies, fetchTopRatedMovies } from './movieData'
+import { fetchMovieSearch, fetchMovieDetails, fetchPopularMovies, fetchTopRatedMovies, fetchSimilarMovies } from './movieData'
 import { movieSearchMockData } from './moviesMockData/movies.search.mockData'
 import { TrendingMoviesMockData } from './moviesMockData/movies.trending.mockData'
 import { movieDetails } from './moviesMockData/movie.details'
 import { popularMovies } from './moviesMockData/movies.popular'
 import { topMovies } from './moviesMockData/movies.top'
+import { similarMovies, noSimilarMovies, noMovieId } from './moviesMockData/movies.similar'
 
 jest.mock('axios')
 
@@ -117,6 +118,42 @@ describe('fetch top rated movies', () => {
       axios.get.mockResolvedValue(topMovies)
       const response = await fetchTopRatedMovies(1)
       expect(response).toEqual(topMovies.data)
+      done()
+    } catch (error) {
+      done(error)
+    }
+  })
+})
+
+describe('fetch similar movies', () => {
+  afterEach(() => {
+    jest.resetAllMocks()
+  })
+  it('should fetch similar movies', async (done) => {
+    try {
+      axios.get.mockResolvedValue(noSimilarMovies)
+      const response = await fetchSimilarMovies(302312, 1)
+      expect(response).toEqual(noSimilarMovies.data)
+      done()
+    } catch (error) {
+      done(error)
+    }
+  })
+  it('should not return similar movies', async (done) => {
+    try {
+      axios.get.mockResolvedValue(similarMovies)
+      const response = await fetchSimilarMovies(302312, 1)
+      expect(response).toEqual(similarMovies.data)
+      done()
+    } catch (error) {
+      done(error)
+    }
+  })
+  it('should be unsuccessful', async (done) => {
+    try {
+      axios.get.mockResolvedValue(noMovieId)
+      const response = await fetchSimilarMovies(123, 1)
+      expect(response).toEqual(noMovieId.data)
       done()
     } catch (error) {
       done(error)
