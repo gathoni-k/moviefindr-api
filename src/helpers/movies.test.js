@@ -1,12 +1,13 @@
 import axios from 'axios'
 import '../../startScripts/setupTests'
-import { fetchMovieSearch, fetchMovieDetails, fetchPopularMovies, fetchTopRatedMovies, fetchSimilarMovies } from './movieData'
+import { fetchMovieSearch, fetchMovieDetails, fetchPopularMovies, fetchTopRatedMovies, fetchSimilarMovies, fetchRecommendedMovies } from './movieData'
 import { movieSearchMockData } from './moviesMockData/movies.search.mockData'
 import { TrendingMoviesMockData } from './moviesMockData/movies.trending.mockData'
 import { movieDetails } from './moviesMockData/movie.details'
 import { popularMovies } from './moviesMockData/movies.popular'
 import { topMovies } from './moviesMockData/movies.top'
 import { similarMovies, noSimilarMovies, noMovieId } from './moviesMockData/movies.similar'
+import { recommendedMovies, noRecommendedMovies, noRecommendedMovieId } from './moviesMockData/movie.recommended'
 
 jest.mock('axios')
 
@@ -154,6 +155,42 @@ describe('fetch similar movies', () => {
       axios.get.mockResolvedValue(noMovieId)
       const response = await fetchSimilarMovies(123, 1)
       expect(response).toEqual(noMovieId.data)
+      done()
+    } catch (error) {
+      done(error)
+    }
+  })
+})
+
+describe('fetch recommended movies', () => {
+  afterEach(() => {
+    jest.resetAllMocks()
+  })
+  it('should fetch recommended movies', async (done) => {
+    try {
+      axios.get.mockResolvedValue(recommendedMovies)
+      const response = await fetchRecommendedMovies(302312, 1)
+      expect(response).toEqual(recommendedMovies.data)
+      done()
+    } catch (error) {
+      done(error)
+    }
+  })
+  it('should not return similar movies', async (done) => {
+    try {
+      axios.get.mockResolvedValue(noRecommendedMovies)
+      const response = await fetchRecommendedMovies(302312, 1)
+      expect(response).toEqual(noRecommendedMovies.data)
+      done()
+    } catch (error) {
+      done(error)
+    }
+  })
+  it('should be unsuccessful', async (done) => {
+    try {
+      axios.get.mockResolvedValue(noRecommendedMovieId)
+      const response = await fetchRecommendedMovies(123, 1)
+      expect(response).toEqual(noRecommendedMovieId.data)
       done()
     } catch (error) {
       done(error)
