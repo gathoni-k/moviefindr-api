@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 import dotenv from 'dotenv'
-import { async } from 'regenerator-runtime'
 
 dotenv.config()
 
