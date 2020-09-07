@@ -183,3 +183,41 @@ GET /movies/popular
     error: string or null
   }
 ```
+
+**Similar**
+
+- Request
+
+```bash
+GET /movies/:movieId/similar
+```
+
+- Response
+
+```json
+  {
+   results: {
+    adult: booloean,
+    backdrop_path: string,
+    belongs_to_collection: string or null,
+    budget: integer
+    genres: array[object],
+    homepage: string or null,
+    id: integer,
+    imdb_id: string or null,
+    original_language: string,
+    original_title: string,
+    overview: string or null,
+    popularity: number,
+    poster_path: string or null,
+    production_companies: array[object],
+    status: string,
+    tagline: string or null,
+    title: string,
+    video: boolean,
+    vote_average: numebr,
+    vote_count: integer
+  },
+    error: string or null
+  }
+```
