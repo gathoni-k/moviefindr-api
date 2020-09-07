@@ -42,3 +42,11 @@ export const fetchTopRatedMovies = async (page) => {
   const response = await axios.get(url)
   return response.data
 }
+
+export const fetchSimilarMovies = async (movieId, page) => {
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${TMDB_API_EY}&language=42269en-US&page=${page}`
+  const response = await axios.get(url)
+  return response.data
+}
+
+// recommended movies
