@@ -31,7 +31,7 @@ Test
 
 ## How to use API
 
-- Base url: `http://localhost:3000`
+- Base url: 'https://shrouded-journey-95640.herokuapp.com/'
 
 ### Movies
 
