@@ -45,7 +45,7 @@ GET /movies/search?query=string&page=number // page is optional
 
 - Response
 
-```json
+```
   {
     results: [
               {
@@ -66,7 +66,6 @@ GET /movies/search?query=string&page=number // page is optional
               }
             ],
     error: string or null
-
   }
 ```
 
@@ -80,7 +79,7 @@ GET /movies/trending/:time // time must be either 'day' or 'week'
 
 - Response
 
-```json
+```
   {
    results: {
       page: number,
@@ -119,7 +118,7 @@ GET /movies/top
 
 - Response
 
-```json
+```
   {
    results: {
     adult: booloean,
@@ -156,7 +155,7 @@ GET /movies/popular
 
 - Response
 
-```json
+```
   {
    results: {
     adult: booloean,
@@ -194,7 +193,7 @@ GET /movies/:movieId/similar
 
 - Response
 
-```json
+```
   {
    results: {
     adult: booloean,
@@ -231,7 +230,7 @@ GET /movies/:movieId/recommended
 
 - Response
 
-```json
+```
   {
    results: {
     adult: booloean,
